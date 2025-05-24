@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../dao/RatingDao.php';
 
 class RatingService extends BaseService {
     protected $validationRules = [
@@ -18,9 +19,9 @@ class RatingService extends BaseService {
 
     private $productService;
 
-    public function __construct($ratingDao, $productService) {
-        parent::__construct($ratingDao);
-        $this->productService = $productService;
+    public function __construct() {
+        parent::__construct(new RatingDao());
+        $this->productService = new ProductService(); // Instantiate internally
     }
 
     public function create($data) {

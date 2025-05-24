@@ -10,13 +10,11 @@ abstract class BaseService {
 
     protected function validate($data) {
         $errors = [];
-        
         foreach ($this->validationRules as $field => $rules) {
             if (isset($rules['required']) && $rules['required'] && empty($data[$field])) {
                 $errors[$field] = "Field is required";
                 continue;
             }
-            
             if (isset($rules['type']) && isset($data[$field])) {
                 switch ($rules['type']) {
                     case 'email':
@@ -37,7 +35,6 @@ abstract class BaseService {
                 }
             }
         }
-        
         return $errors;
     }
 
@@ -54,7 +51,7 @@ abstract class BaseService {
         if (!empty($errors)) {
             throw new Exception(json_encode($errors));
         }
-        return $this->dao->create($data);
+        return $this->dao->insert($data);
     }
 
     public function update($id, $data) {
@@ -68,4 +65,4 @@ abstract class BaseService {
     public function delete($id) {
         return $this->dao->delete($id);
     }
-} 
+}

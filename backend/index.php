@@ -28,31 +28,30 @@ try {
     }
 
     // Register core services (if classes exist)
-    if (class_exists('UserService')) {
-        $flight->register('userService', 'UserService');
-    }
     if (class_exists('ProductService')) {
-        $flight->register('productService', 'ProductService');
-    }
-    if (class_exists('CategoryService')) {
-        $flight->register('categoryService', 'CategoryService');
-    }
-    if (class_exists('AuthService')) {
-    $flight->set('authService', new AuthService());
+        $flight->set('productService', new ProductService());
     }
 
-    // Register composite services
+    if (class_exists('UserService')) {
+        $flight->set('userService', new UserService());
+    }
+
     if (class_exists('OrderService')) {
         $flight->set('orderService', new OrderService(
-            $flight->get('productService'),
-            $flight->get('userService')
+            $flight->get('productService')
         ));
     }
+
+    if (class_exists('CategoryService')) {
+        $flight->set('categoryService', new CategoryService());
+    }
+
+    if (class_exists('AuthService')) {
+        $flight->set('authService', new AuthService());
+    }
+
     if (class_exists('RatingService')) {
-        $flight->set('ratingService', new RatingService(
-            $flight->get('productService'),
-            $flight->get('userService')
-        ));
+        $flight->set('ratingService', new RatingService());
     }
 
     // CORS middleware
@@ -103,7 +102,7 @@ try {
         }
     });
 
-    // ✅ Load all route modules from routes/index.php (just once)
+    // Load all route modules from routes/index.php (just once)
     $loadRoutes = require __DIR__ . '/routes/index.php';
     $loadRoutes($flight);
 

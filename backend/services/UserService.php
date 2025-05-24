@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../dao/UserDao.php';
 
 class UserService extends BaseService {
     protected $validationRules = [
@@ -13,8 +14,8 @@ class UserService extends BaseService {
         'Address' => ['type' => 'string']
     ];
 
-    public function __construct($userDao) {
-        parent::__construct($userDao);
+    public function __construct() {
+        parent::__construct(new UserDao());
     }
 
     public function create($data) {

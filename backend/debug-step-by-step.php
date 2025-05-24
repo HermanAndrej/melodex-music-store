@@ -79,6 +79,8 @@ $routeFiles = [
     'routes/index.php',
     'routes/test_routes.php',
     'routes/auth_routes.php',
+    'routes/product_routes.php',
+    'routes/category_routes.php',
 ];
 
 foreach ($routeFiles as $file) {

@@ -37,8 +37,13 @@ return function($flight) {
                 return;
             }
 
-            // Add user ID to order data
-            $input['user_id'] = $user->id ?? $user['id'] ?? null;
+            // Add user ID to order data - use UserID to match database schema
+            $input['UserID'] = $user->id ?? $user['id'] ?? $user->UserID ?? $user['UserID'] ?? null;
+            
+            if (!$input['UserID']) {
+                $flight->json(['error' => 'User ID not found'], 401);
+                return;
+            }
 
             $order = $orderService->create($input);
             $flight->json($order);
@@ -132,7 +137,7 @@ return function($flight) {
             if ($order) {
                 // Optional: Check if the order belongs to the current user
                 $userId = $user->id ?? $user['id'] ?? $user->UserID ?? $user['UserID'] ?? null;
-                if ($userId && isset($order['user_id']) && $order['user_id'] != $userId) {
+                if ($userId && isset($order['UserID']) && $order['UserID'] != $userId) {
                     $flight->json(['error' => 'Access denied'], 403);
                     return;
                 }

@@ -1,6 +1,56 @@
 <?php
 
 return function($flight) {
+
+    /**
+ * @OA\Post(
+ *     path="/api/products",
+ *     summary="Create a new product",
+ *     tags={"Product"},
+ *     security={{"bearerAuth":{}}},
+ *     @OA\RequestBody(
+ *         required=true,
+ *         @OA\JsonContent(ref="#/components/schemas/ProductCreateRequest")
+ *     ),
+ *     @OA\Response(
+ *         response=201,
+ *         description="Product created successfully",
+ *         @OA\JsonContent(ref="#/components/schemas/Product")
+ *     ),
+ *     @OA\Response(response=400, description="Invalid input"),
+ *     @OA\Response(response=401, description="Unauthorized")
+ * )
+ */
+    $flight->route('POST /api/products', function() use ($flight) {
+        try {
+            $productService = $flight->get('productService');
+        if (!$productService) {
+            $flight->json(['error' => 'Product service not available'], 500);
+            return;
+        }
+
+        // Authenticate user (optional: limit to admins)
+        $user = $flight->get('user');
+        if (!$user) {
+            $flight->json(['error' => 'Unauthorized'], 401);
+            return;
+        }
+
+        $input = $flight->request()->data->getData();
+        if (empty($input)) {
+            $flight->json(['error' => 'Empty input'], 400);
+            return;
+        }
+
+        $created = $productService->create($input);
+        $flight->json($created, 201);
+    } catch (Exception $e) {
+        error_log("Create product error: " . $e->getMessage());
+        $flight->json(['error' => 'Failed to create product'], 500);
+    }
+});
+
+
     /**
      * @OA\Get(
      *     path="/api/products",
