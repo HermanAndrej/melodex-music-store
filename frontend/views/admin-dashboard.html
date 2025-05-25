@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Melodex - Admin Dashboard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/templatemo.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="../css/fontawesome.min.css">
+    <style>
+        .admin-card {
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .admin-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .stats-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4">Admin Dashboard</h1>
+                <div class="alert alert-info">
+                    Welcome to the admin dashboard. From here, you can manage all aspects of the Melodex store.
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row mb-5">
+            <div class="col-md-3 mb-3">
+                <div class="card text-white bg-primary stats-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Users</h5>
+                        <p class="card-text display-4" id="total-users">...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card text-white bg-success stats-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Products</h5>
+                        <p class="card-text display-4" id="total-products">...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card text-white bg-warning stats-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Orders</h5>
+                        <p class="card-text display-4" id="total-orders">...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card text-white bg-danger stats-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Reviews</h5>
+                        <p class="card-text display-4" id="total-reviews">...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Functions -->
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 admin-card" onclick="window.location.hash = '#/admin/users'">
+                    <div class="card-body text-center">
+                        <i class="fas fa-users fa-3x mb-3 text-primary"></i>
+                        <h3 class="card-title">User Management</h3>
+                        <p class="card-text">View, add, edit, and delete user accounts. Manage user roles and permissions.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#/admin/users" class="btn btn-primary w-100">Manage Users</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 admin-card" onclick="window.location.hash = '#/admin/products'">
+                    <div class="card-body text-center">
+                        <i class="fas fa-guitar fa-3x mb-3 text-success"></i>
+                        <h3 class="card-title">Product Management</h3>
+                        <p class="card-text">Add, edit, and remove products from inventory. Update product details and pricing.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#/admin/products" class="btn btn-success w-100">Manage Products</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 admin-card" onclick="window.location.hash = '#/admin/categories'">
+                    <div class="card-body text-center">
+                        <i class="fas fa-tags fa-3x mb-3 text-info"></i>
+                        <h3 class="card-title">Category Management</h3>
+                        <p class="card-text">Create, edit, and organize product categories to improve navigation.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#/admin/categories" class="btn btn-info w-100">Manage Categories</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 admin-card" onclick="window.location.hash = '#/admin/orders'">
+                    <div class="card-body text-center">
+                        <i class="fas fa-shopping-cart fa-3x mb-3 text-warning"></i>
+                        <h3 class="card-title">Order Management</h3>
+                        <p class="card-text">View and process customer orders. Update order status and track fulfillment.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#/admin/orders" class="btn btn-warning w-100">Manage Orders</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 admin-card" onclick="window.location.hash = '#/admin/reviews'">
+                    <div class="card-body text-center">
+                        <i class="fas fa-star fa-3x mb-3 text-danger"></i>
+                        <h3 class="card-title">Review Management</h3>
+                        <p class="card-text">Moderate customer reviews. Approve, reject, or remove inappropriate content.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#/admin/reviews" class="btn btn-danger w-100">Manage Reviews</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 admin-card">
+                    <div class="card-body text-center">
+                        <i class="fas fa-chart-line fa-3x mb-3 text-secondary"></i>
+                        <h3 class="card-title">Analytics</h3>
+                        <p class="card-text">View sales reports, customer analytics, and other business insights.</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-secondary w-100" onclick="alert('Analytics feature coming soon!')">View Analytics</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard JavaScript -->
+    <script type="module">
+        import apiService from '../js/services/apiService.js';
+        import authService from '../js/services/authService.js';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Verify admin access
+            if (!authService.isAdmin()) {
+                window.location.hash = '#/';
+                return;
+            }
+
+            try {
+                // Load dashboard stats
+                const stats = await apiService.get('/admin/stats');
+                
+                // Update stats display
+                document.getElementById('total-users').textContent = stats.users || '0';
+                document.getElementById('total-products').textContent = stats.products || '0';
+                document.getElementById('total-orders').textContent = stats.orders || '0';
+                document.getElementById('total-reviews').textContent = stats.reviews || '0';
+                
+            } catch (error) {
+                console.error('Error loading admin dashboard stats:', error);
+                
+                // Show dummy data if API call fails
+                document.getElementById('total-users').textContent = '0';
+                document.getElementById('total-products').textContent = '0';
+                document.getElementById('total-orders').textContent = '0';
+                document.getElementById('total-reviews').textContent = '0';
+            }
+        });
+    </script>
+</body>
+
+</html>

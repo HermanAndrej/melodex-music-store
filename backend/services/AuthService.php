@@ -14,16 +14,26 @@ class AuthService extends BaseService {
     public function register($userData) {
         try {
             $requiredFields = ['name', 'email', 'password'];
+            $missingFields = [];
+            
+            // Check for required fields
             foreach ($requiredFields as $field) {
                 if (empty($userData[$field])) {
-                    return ['success' => false, 'message' => "Missing required field: $field"];
+                    $missingFields[] = $field;
                 }
+            }
+            
+            if (!empty($missingFields)) {
+                return [
+                    'success' => false, 
+                    'message' => 'Missing required fields: ' . implode(', ', $missingFields)
+                ];
             }
 
             // Normalize email
-            $userData['email'] = strtolower(trim($userData['email']));
+            $email = strtolower(trim($userData['email']));
 
-            if (!filter_var($userData['email'], FILTER_VALIDATE_EMAIL)) {
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 return ['success' => false, 'message' => 'Invalid email format'];
             }
 
@@ -31,61 +41,45 @@ class AuthService extends BaseService {
                 return ['success' => false, 'message' => 'Password must be at least 6 characters'];
             }
 
-            $existingUser = $this->dao->findByEmail($userData['email']);
+            $existingUser = $this->dao->findByEmail($email);
             if ($existingUser) {
                 return ['success' => false, 'message' => 'Email already registered'];
             }
 
-            $result = $this->dao->create($userData);
+            $userId = $this->dao->create($userData);
+            $user = $this->dao->getUserById($userId);
 
-            return $result
-                ? ['success' => true, 'message' => 'User registered successfully']
-                : ['success' => false, 'message' => 'Registration failed'];
+            if (!$user) {
+                return ['success' => false, 'message' => 'Failed to retrieve user after registration'];
+            }
+
+            // Generate JWT token
+            $token = $this->generateToken($user);
+
+            // Remove sensitive data before returning
+            unset($user['Password']);
+
+            return [
+                'success' => true, 
+                'message' => 'User registered successfully',
+                'token' => $token,
+                'user' => $user
+            ];
             
         } catch (Exception $e) {
-            return ['success' => false, 'message' => 'Error: ' . $e->getMessage()];
+            error_log('Registration error: ' . $e->getMessage());
+            return [
+                'success' => false, 
+                'message' => 'Registration failed. Please try again later.',
+                'error' => $e->getMessage()
+            ];
         }
     }
     
-    public function login($loginData) {
-    try {
-        error_log("LOGIN DATA (start): " . print_r($loginData, true));
-
-        if (!is_array($loginData)) {
-            error_log("LOGIN DATA is not array");
-            return ['success' => false, 'message' => 'Invalid request format'];
-        }
-
-        if (!array_key_exists('email', $loginData)) {
-            error_log("Missing email key");
-            return ['success' => false, 'message' => 'Email is required'];
-        }
-        if (!array_key_exists('password', $loginData)) {
-            error_log("Missing password key");
-            return ['success' => false, 'message' => 'Password is required'];
-        }
-
-        $email = strtolower(trim($loginData['email']));
-        $password = $loginData['password'];
-
-        error_log("EMAIL: $email");
-        error_log("PASSWORD: " . ($password ? 'SET' : 'EMPTY'));
-
-        $user = $this->dao->findByEmail($email);
-        error_log("User from DAO: " . print_r($user, true));
-
-        if (!$user) {
-            error_log("User not found");
-            return ['success' => false, 'message' => 'Invalid username or password'];
-        }
-
-        // Fix here: use correct key 'Password' (capital P)
-        if (!$this->dao->verifyPassword($password, $user['Password'])) {
-            error_log("Password verification failed");
-            return ['success' => false, 'message' => 'Invalid username or password'];
-        }
-
-        // Use correct keys with proper case for JWT payload
+    /**
+     * Generate JWT token for a user
+     */
+    private function generateToken($user) {
         $payload = [
             'user' => [
                 'id' => $user['UserID'],
@@ -95,24 +89,63 @@ class AuthService extends BaseService {
             'iat' => time(),
             'exp' => time() + 86400 // token valid for 24 hours
         ];
+        return JWT::encode($payload, $_ENV['JWT_SECRET'], 'HS256');
+    }
 
-        $token = JWT::encode($payload, $_ENV['JWT_SECRET'], 'HS256');
+    public function login($loginData) {
+        try {
+            // Input validation
+            if (!is_array($loginData)) {
+                return ['success' => false, 'message' => 'Invalid request format'];
+            }
 
-        // Remove password before returning user info
-        unset($user['Password']);
+            $errors = [];
+            if (empty($loginData['email'])) {
+                $errors[] = 'Email is required';
+            }
+            if (empty($loginData['password'])) {
+                $errors[] = 'Password is required';
+            }
 
-        return [
-            'success' => true,
-            'message' => 'Login successful',
-            'data' => [
+            if (!empty($errors)) {
+                return ['success' => false, 'message' => implode('. ', $errors)];
+            }
+
+
+            $email = strtolower(trim($loginData['email']));
+            $password = $loginData['password'];
+
+            // Find user by email
+            $user = $this->dao->findByEmail($email);
+            if (!$user) {
+                // For security, don't reveal if email exists or not
+                return ['success' => false, 'message' => 'Invalid email or password'];
+            }
+
+            // Verify password
+            if (!$this->dao->verifyPassword($password, $user['Password'])) {
+                return ['success' => false, 'message' => 'Invalid email or password'];
+            }
+
+            // Generate JWT token
+            $token = $this->generateToken($user);
+
+            // Remove sensitive data before returning
+            unset($user['Password']);
+
+            // Return success response with token and user data
+            return [
+                'success' => true,
+                'message' => 'Login successful',
                 'token' => $token,
                 'user' => $user
-            ]
-        ];
-    } catch (Exception $e) {
-        error_log("Login error: " . $e->getMessage());
-        return ['success' => false, 'message' => 'Login failed: ' . $e->getMessage()];
+            ];
+        } catch (Exception $e) {
+            error_log('Login error: ' . $e->getMessage());
+            return [
+                'success' => false,
+                'message' => 'An error occurred during login. Please try again.'
+            ];
+        }
     }
-}
-
 }

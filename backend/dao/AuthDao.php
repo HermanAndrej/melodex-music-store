@@ -8,17 +8,30 @@ class AuthDao extends BaseDao {
     }
 
     public function create($userData) {
-        if (isset($userData['password'])) {
-            $userData['password'] = password_hash($userData['password'], PASSWORD_DEFAULT);
-        }
-        return parent::insert($userData);
+        // Map frontend fields to database fields
+        $dbData = [
+            'Name' => $userData['name'] ?? '',
+            'Email' => strtolower(trim($userData['email'] ?? '')),
+            'Password' => password_hash($userData['password'] ?? '', PASSWORD_DEFAULT),
+            'DateOfBirth' => $userData['dateOfBirth'] ?? null,
+            'Address' => $userData['address'] ?? null,
+            'Phone' => $userData['phone'] ?? null,
+            'DateOfJoin' => date('Y-m-d')
+        ];
+        
+        return parent::insert($dbData);
     }
 
     public function findByEmail($email) {
-        return $this->query_unique("SELECT * FROM users WHERE email = :email", [':email' => $email]);
+        $email = strtolower(trim($email));
+        return $this->query_unique("SELECT * FROM users WHERE Email = :email", [':email' => $email]);
     }
 
     public function verifyPassword($plainPassword, $hashedPassword) {
         return password_verify($plainPassword, $hashedPassword);
+    }
+
+    public function getUserById($id) {
+        return $this->query_unique("SELECT * FROM users WHERE UserID = :id", [':id' => $id]);
     }
 }
