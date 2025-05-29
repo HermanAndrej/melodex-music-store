@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../dao/ProductDao.php';
 
 class ProductService extends BaseService {
     protected $validationRules = [
@@ -17,8 +18,8 @@ class ProductService extends BaseService {
         'ImageURL' => ['type' => 'string']
     ];
 
-    public function __construct($productDao) {
-        parent::__construct($productDao);
+    public function __construct() {
+        parent::__construct(new ProductDao());
     }
 
     public function create($data) {

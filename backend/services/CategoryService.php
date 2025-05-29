@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../dao/CategoryDao.php';
 
 class CategoryService extends BaseService {
     protected $validationRules = [
@@ -6,8 +7,8 @@ class CategoryService extends BaseService {
         'ParentCategoryID' => ['type' => 'numeric']
     ];
 
-    public function __construct($categoryDao) {
-        parent::__construct($categoryDao);
+    public function __construct() {
+        parent::__construct(new CategoryDao());
     }
 
     public function create($data) {

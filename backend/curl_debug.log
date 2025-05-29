@@ -1,0 +1,1684 @@
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 401 Unauthorized
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:26:53 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 58
+< 
+* Excess found in a read: excess = 874, size = 58, maxdownload = 58, bytecount = 0
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 401 Unauthorized
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:26:53 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 58
+< 
+* Excess found in a read: excess = 874, size = 58, maxdownload = 58, bytecount = 0
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 401 Unauthorized
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:26:53 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 58
+< 
+* Excess found in a read: excess = 874, size = 58, maxdownload = 58, bytecount = 0
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 401 Unauthorized
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:34:48 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 58
+< 
+* Excess found in a read: excess = 908, size = 58, maxdownload = 58, bytecount = 0
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 401 Unauthorized
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:34:48 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 58
+< 
+* Excess found in a read: excess = 908, size = 58, maxdownload = 58, bytecount = 0
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 401 Unauthorized
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:34:48 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 58
+< 
+* Excess found in a read: excess = 908, size = 58, maxdownload = 58, bytecount = 0
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:43:48 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:43:48 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:43:48 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/register HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 72
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:43:48 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/login HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 53
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:43:48 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:47:12 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:47:12 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:47:12 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/register HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 72
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:47:12 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/login HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 53
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:47:12 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:48:47 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:48:47 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:48:47 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/register HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 72
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:48:47 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/login HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 53
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:48:47 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:54:12 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:54:12 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:54:12 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/register HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 72
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:54:12 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/login HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 53
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:54:12 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:55:45 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:55:45 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:55:45 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/register HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 72
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:55:45 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/login HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 53
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:55:46 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:58:11 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:58:11 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:58:11 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/register HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 72
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:58:11 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/login HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 53
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 16:58:11 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:10:51 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:10:51 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:10:51 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/register HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 72
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:10:51 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/login HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 53
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:10:51 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 401 Unauthorized
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:34:25 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Expires: Mon, 26 Jul 1997 05:00:00 GMT
+< Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+< Pragma: no-cache
+< Content-Length: 58
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:34:25 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 96
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:34:25 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 118
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/register HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 72
+
+< HTTP/1.1 500 Internal Server Error
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:34:25 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Expires: Mon, 26 Jul 1997 05:00:00 GMT
+< Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+< Pragma: no-cache
+< Content-Length: 1515
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/login HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 53
+
+< HTTP/1.1 500 Internal Server Error
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:34:25 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Expires: Mon, 26 Jul 1997 05:00:00 GMT
+< Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+< Pragma: no-cache
+< Content-Length: 1512
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 401 Unauthorized
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:37:20 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Expires: Mon, 26 Jul 1997 05:00:00 GMT
+< Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+< Pragma: no-cache
+< Content-Length: 58
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:37:20 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 96
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:37:20 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 118
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/register HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 72
+
+< HTTP/1.1 500 Internal Server Error
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:37:20 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 38
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/login HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 53
+
+< HTTP/1.1 500 Internal Server Error
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:37:20 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 38
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 401 Unauthorized
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:40:49 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Expires: Mon, 26 Jul 1997 05:00:00 GMT
+< Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+< Pragma: no-cache
+< Content-Length: 58
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:40:49 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 96
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:40:49 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 118
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/register HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 72
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:40:49 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 57
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/login HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 53
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:40:49 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 76
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 401 Unauthorized
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:48:29 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Expires: Mon, 26 Jul 1997 05:00:00 GMT
+< Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+< Pragma: no-cache
+< Content-Length: 58
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:48:29 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 96
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:48:29 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 118
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/register HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 72
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:48:29 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 54
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/login HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 53
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:48:29 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 76
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 401 Unauthorized
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:50:29 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Expires: Mon, 26 Jul 1997 05:00:00 GMT
+< Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+< Pragma: no-cache
+< Content-Length: 58
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:50:29 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 96
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:50:29 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 118
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/register HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 72
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:50:29 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 54
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/login HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 53
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:50:29 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 76
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 401 Unauthorized
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:52:14 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Expires: Mon, 26 Jul 1997 05:00:00 GMT
+< Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+< Pragma: no-cache
+< Content-Length: 58
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:52:14 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 96
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:52:14 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 118
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/register HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 72
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:52:14 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 54
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/login HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 53
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:52:14 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 76
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 401 Unauthorized
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:54:54 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Expires: Mon, 26 Jul 1997 05:00:00 GMT
+< Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+< Pragma: no-cache
+< Content-Length: 58
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:54:54 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 96
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:54:54 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 118
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/register HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 72
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:54:54 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 54
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/login HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 53
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 17:54:55 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 429
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 401 Unauthorized
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 18:47:33 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Expires: Mon, 26 Jul 1997 05:00:00 GMT
+< Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+< Pragma: no-cache
+< Content-Length: 58
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 18:47:33 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 96
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 18:47:33 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 118
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/register HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 72
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 18:47:33 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 54
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/login HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 53
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Fri, 23 May 2025 18:47:33 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 429
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 401 Unauthorized
+< Host: localhost:8000
+< Date: Sat, 24 May 2025 11:08:14 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Expires: Mon, 26 Jul 1997 05:00:00 GMT
+< Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+< Pragma: no-cache
+< Content-Length: 58
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Sat, 24 May 2025 11:08:14 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 96
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Sat, 24 May 2025 11:08:14 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 118
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/register HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 72
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Sat, 24 May 2025 11:08:14 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 54
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/login HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 53
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Sat, 24 May 2025 11:08:14 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 429
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET / HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 401 Unauthorized
+< Host: localhost:8000
+< Date: Sun, 25 May 2025 19:08:25 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Expires: Mon, 26 Jul 1997 05:00:00 GMT
+< Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+< Pragma: no-cache
+< Content-Length: 58
+< Content-type: text/html; charset=UTF-8
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> GET /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Sun, 25 May 2025 19:08:25 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 96
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /test HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 15
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Sun, 25 May 2025 19:08:25 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 118
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/register HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 72
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Sun, 25 May 2025 19:08:25 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 418
+< 
+* Closing connection
+*   Trying [::1]:8000...
+* Connected to localhost (::1) port 8000
+> POST /auth/login HTTP/1.1
+Host: localhost:8000
+Accept: */*
+Content-Type: application/json
+Content-Length: 53
+
+< HTTP/1.1 200 OK
+< Host: localhost:8000
+< Date: Sun, 25 May 2025 19:08:25 GMT
+< Connection: close
+< X-Powered-By: PHP/8.2.12
+< Access-Control-Allow-Origin: *
+< Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
+< Access-Control-Allow-Headers: Content-Type, Authorization
+< Content-Type: application/json
+< Content-Length: 406
+< 
+* Closing connection

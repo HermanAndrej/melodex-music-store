@@ -1,5 +1,5 @@
 <?php
-require_once '../config.php';
+require_once __DIR__ . '/../config.php';
 
 class BaseDao {
     protected $table;
@@ -54,5 +54,12 @@ class BaseDao {
         $this->executeQuery($sql, [':id' => $id]);
         return true;
     }
+
+    public function query_unique($query, $params = []) {
+        $stmt = $this->executeQuery($query, $params);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ?: null;
+    }
+
 }
 ?>

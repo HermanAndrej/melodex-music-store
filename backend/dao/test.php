@@ -1,5 +1,7 @@
 <?php
-require_once 'UserDao.php';
+require_once __DIR__ . '/UserDao.php';
+require_once __DIR__ . '/../config.php';
+
 
 $userDao = new UserDao();
 
