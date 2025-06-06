@@ -53,5 +53,20 @@ class ProductDao extends BaseDao {
                 WHERE p.ProductID = :productId";
         return $this->executeQuery($sql, [':productId' => $productId])->fetch();
     }
+
+    public function getByCategory($categoryId) {
+        $sql = "SELECT * FROM " . $this->table . " WHERE CategoryID = :categoryId";
+        return $this->executeQuery($sql, [':categoryId' => $categoryId])->fetchAll();
+    }
+
+    public function search($query) {
+        $sql = "SELECT * FROM " . $this->table . " WHERE Name LIKE :query OR Description LIKE :query";
+        return $this->executeQuery($sql, [':query' => "%$query%"])->fetchAll();
+    }
+
+    public function getByProductId($productId) {
+        $sql = "SELECT * FROM " . $this->table . " WHERE ProductID = :productId";
+        return $this->executeQuery($sql, [':productId' => $productId])->fetch();
+    }
 }
 ?>
