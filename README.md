@@ -1,129 +1,131 @@
 # Melodex Music Store
 
-![Melodex Logo](https://via.placeholder.com/150x50?text=Melodex+Logo)
+Melodex is a full-stack e-commerce platform for musical instruments and equipment. Built with modern web technologies, it provides a seamless shopping experience for music enthusiasts.
 
-A full-featured online music instrument store built with modern web technologies. This single-page application (SPA) provides a seamless shopping experience for music enthusiasts.
+## Features
 
-## ✨ Features
+- 🛍️ **Product Catalog**
+  - Browse musical instruments and equipment
+  - Filter products by categories
+  - Search functionality
+  - Detailed product views
 
-- **User Authentication**
-  - User registration and login with JWT
-  - Role-based access control (Admin/User)
-  - Secure password hashing
-
-- **Product Management**
-  - Browse products by categories
-  - Product search and filtering
-  - Product ratings and reviews
-
-- **Shopping Experience**
-  - Shopping cart functionality
-  - Order processing
+- 👤 **User Management**
+  - User registration and authentication
+  - User profiles
   - Order history
+  - Admin panel for user management
 
-- **Admin Dashboard**
-  - Manage products and categories
-  - View and manage orders
+- 🛒 **Shopping Cart**
+  - Add/remove items
+  - Update quantities
+  - Real-time price calculations
+  - Secure checkout process
+
+- 📦 **Order Management**
+  - Order placement
+  - Order tracking
+  - Order history
+  - Admin order management
+
+- 👨‍💼 **Admin Panel**
+  - Product management (CRUD operations)
+  - Order management
   - User management
+  - Category management
 
-## 🛠 Technology Stack
+## Tech Stack
 
 ### Frontend
-- HTML5, CSS3, JavaScript (ES6+)
+- HTML5, CSS3, JavaScript
 - Bootstrap 5 for responsive design
-- Vanilla JavaScript for SPA functionality
-- Fetch API for AJAX requests
+- Font Awesome for icons
+- Custom CSS for styling
 
 ### Backend
-- PHP 8.1+
-- FlightPHP framework
-- MySQL 8.0+
-- JWT for authentication
+- PHP 8.x
+- MySQL Database
+- RESTful API architecture
+- JWT Authentication
 
-### Development Tools
-- Git for version control
-- Composer for PHP dependencies
-- PHPUnit for testing
+## Prerequisites
 
-## 🚀 Installation
-
-### Prerequisites
-- PHP 8.1 or higher
-- MySQL 8.0 or higher
-- Composer
+- PHP 8.x or higher
+- MySQL 5.7 or higher
 - Web server (Apache/Nginx)
+- Composer (PHP package manager)
 
-### Setup Instructions
+## Installation
 
-1. **Clone the repository**
+1. Clone the repository:
    ```bash
-   git clone [repository-url]
-   cd webapp
+   git clone https://github.com/yourusername/melodex-music-store.git
+   cd melodex-music-store
    ```
 
-2. **Install PHP dependencies**
-   ```bash
-   composer install
-   ```
-
-3. **Set up the database**
+2. Set up the database:
    - Create a new MySQL database
-   - Import the database schema from `melodex_db.sql`
+   - Import the database schema from `backend/melodexdb.sql`
 
-4. **Configure environment variables**
-   - Copy `.env-example` to `.env`
-   - Update database credentials and JWT secret
+3. Configure the backend:
+   - Copy `backend/config.example.php` to `backend/config.php`
+   - Update the database credentials in `config.php`
+   - Set your JWT secret key
 
-5. **Configure your web server**
-   - Point your web server to the `public` directory
-   - Ensure mod_rewrite is enabled (for Apache)
-   - Set up proper permissions for the `storage` directory
+4. Start the PHP development server:
+   ```bash
+   cd backend
+   php -S localhost:8000
+   ```
 
-6. **Access the application**
-   - Open your browser and navigate to the configured URL
+5. Open the frontend:
+   - Use a web server to serve the `frontend` directory
+   - Or open `frontend/views/index.html` directly in your browser
 
-## 📁 Project Structure
+## Project Structure
 
 ```
-webapp/
+melodex-music-store/
 ├── backend/
-│   ├── config/         # Configuration files
-│   ├── controllers/    # Request handlers
-│   ├── dao/            # Data Access Objects
-│   ├── middleware/     # Authentication and validation
-│   ├── services/       # Business logic
-│   └── routes/         # API route definitions
+│   ├── api/           # API endpoints
+│   ├── config/        # Configuration files
+│   ├── dao/          # Data Access Objects
+│   ├── models/       # Data models
+│   ├── routes/       # Route definitions
+│   ├── services/     # Business logic
+│   └── utils/        # Utility functions
 ├── frontend/
-│   ├── assets/        # Images, fonts, etc.
-│   ├── css/           # Stylesheets
-│   ├── js/            # JavaScript modules
-│   │   ├── controllers/
-│   │   ├── models/
-│   │   └── services/
-│   └── views/         # HTML templates
-├── docs/              # API documentation
-└── public/            # Publicly accessible files
+│   ├── assets/       # Static assets
+│   ├── css/         # Stylesheets
+│   ├── js/          # JavaScript files
+│   └── views/       # HTML pages
+└── docs/            # Documentation
 ```
 
-## 📚 API Documentation
+## API Documentation
 
-API documentation is available using OpenAPI (Swagger). After setting up the project, you can access it at:
+The API documentation is available at `/api/docs` when running the backend server. It provides detailed information about all available endpoints, request/response formats, and authentication requirements.
 
-```
-http://your-domain.com/docs
-```
+## Contributing
 
-Or view the OpenAPI specification file at:
-[`/backend/docs/openapi.yaml`](/backend/docs/openapi.yaml)
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 🔒 Authentication
+## License
 
-The API uses JWT (JSON Web Tokens) for authentication. Include the token in the Authorization header for protected routes:
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-```
-Authorization: Bearer your.jwt.token.here
-```
+## Acknowledgments
 
-## 📱 Mobile Responsive
+- [Bootstrap](https://getbootstrap.com/) for the frontend framework
+- [Font Awesome](https://fontawesome.com/) for the icons
+- [TemplateMo](https://templatemo.com/) for the initial template design
 
-The application is fully responsive and works on all device sizes, from mobile phones to desktop computers.
+## Contact
+
+Andrej Herman - [@HermanAndrej](https://github.com/HermanAndrej)
+
+Project Link: [https://github.com/HermanAndrej/melodex-music-store](https://github.com/HermanAndrej/melodex-music-store) 

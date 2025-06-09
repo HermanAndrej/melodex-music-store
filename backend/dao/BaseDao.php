@@ -18,18 +18,20 @@ class BaseDao {
             $stmt->execute($params);
             return $stmt;
         } catch (PDOException $e) {
+            error_log("Database query failed: " . $e->getMessage());
             throw new Exception("Database query failed: " . $e->getMessage());
         }
     }
 
     public function getAll() {
         $sql = "SELECT * FROM " . $this->table;
-        return $this->executeQuery($sql)->fetchAll();
+        $result = $this->executeQuery($sql)->fetchAll(PDO::FETCH_ASSOC);
+        return $result ?: [];
     }
 
     public function getById($id) {
         $sql = "SELECT * FROM " . $this->table . " WHERE " . $this->primaryKey . " = :id";
-        return $this->executeQuery($sql, [':id' => $id])->fetch();
+        return $this->executeQuery($sql, [':id' => $id])->fetch(PDO::FETCH_ASSOC);
     }
 
     public function insert($data) {
@@ -44,8 +46,9 @@ class BaseDao {
         $setClauses = array_map(fn($key) => "$key = :$key", array_keys($data));
         $setString = implode(", ", $setClauses);
         $sql = "UPDATE " . $this->table . " SET $setString WHERE " . $this->primaryKey . " = :id";
-        $data['id'] = $id;
-        $this->executeQuery($sql, $data);
+        $params = $data;
+        $params['id'] = $id;
+        $this->executeQuery($sql, $params);
         return true;
     }
 

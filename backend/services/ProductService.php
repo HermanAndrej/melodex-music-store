@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__ . '/../dao/ProductDao.php';
 
 class ProductService extends BaseService {
     protected $validationRules = [
@@ -18,13 +17,15 @@ class ProductService extends BaseService {
         'ImageURL' => ['type' => 'string']
     ];
 
-    public function __construct() {
-        parent::__construct(new ProductDao());
+    public function __construct($productDao) {
+        parent::__construct($productDao);
     }
 
     public function create($data) {
-        // Set default rating to 0
-        $data['Rating'] = 0;
+        // Set default rating to 0 if not provided
+        if (!isset($data['Rating'])) {
+            $data['Rating'] = 0;
+        }
         return parent::create($data);
     }
 

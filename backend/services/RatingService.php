@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__ . '/../dao/RatingDao.php';
 
 class RatingService extends BaseService {
     protected $validationRules = [
@@ -19,29 +18,41 @@ class RatingService extends BaseService {
 
     private $productService;
 
-    public function __construct() {
-        parent::__construct(new RatingDao());
-        $this->productService = new ProductService(); // Instantiate internally
+    public function __construct($ratingDao, $productService) {
+        parent::__construct($ratingDao);
+        $this->productService = $productService;
     }
 
     public function create($data) {
-        // Validate rating value
-        if ($data['RatingValue'] < 1 || $data['RatingValue'] > 5) {
-            throw new Exception("Rating must be between 1 and 5");
-        }
+        try {
+            // Validate rating value
+            if (!isset($data['RatingValue']) || $data['RatingValue'] < 1 || $data['RatingValue'] > 5) {
+                throw new Exception("Rating must be between 1 and 5");
+            }
 
-        // Check if user has already rated this product
-        $existingRating = $this->dao->getUserProductRating($data['UserID'], $data['ProductID']);
-        if ($existingRating) {
-            throw new Exception("User has already rated this product");
-        }
+            // Check if user has already rated this product
+            $existingRating = $this->dao->getUserProductRating($data['UserID'], $data['ProductID']);
+            if ($existingRating) {
+                throw new Exception("User has already rated this product");
+            }
 
-        $rating = parent::create($data);
-        
-        // Update product's average rating
-        $this->productService->updateRating($data['ProductID']);
-        
-        return $rating;
+            // Validate required fields
+            if (!isset($data['UserID']) || !isset($data['ProductID'])) {
+                throw new Exception("UserID and ProductID are required");
+            }
+
+            $rating = parent::create($data);
+            
+            // Update product's average rating
+            if ($rating) {
+                $this->productService->updateRating($data['ProductID']);
+            }
+            
+            return $rating;
+        } catch (Exception $e) {
+            error_log("Create rating error: " . $e->getMessage());
+            throw $e;
+        }
     }
 
     public function update($id, $data) {
@@ -58,11 +69,11 @@ class RatingService extends BaseService {
         return $rating;
     }
 
-    public function getProductRatings($productId) {
-        return $this->dao->getByProduct($productId);
+    public function getByProductId($productId) {
+        return $this->dao->getByProductId($productId);
     }
 
-    public function getUserRatings($userId) {
-        return $this->dao->getByUser($userId);
+    public function getByUserId($userId) {
+        return $this->dao->getByUserId($userId);
     }
 } 
