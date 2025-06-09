@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Melodex - Sign Up</title>
+    <title>Melodex - Product Detail Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,6 +16,20 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="../css/fontawesome.min.css">
+
+    <!-- Slick -->
+    <link rel="stylesheet" type="text/css" href="../css/slick.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/slick-theme.css">
+    <script src="../js/nav.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/products.js"></script>
+    <script>
+        // Initialize product details when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Loading product details...');
+            productUI.loadProductDetails();
+        });
+    </script>
 <!--
     
 TemplateMo 559 Zay Shop
@@ -81,17 +95,6 @@ https://templatemo.com/tm-559-zay-shop
                     </ul>
                 </div>
                 <div class="navbar align-self-center d-flex">
-                    <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
-                            <div class="input-group-text">
-                                <i class="fa fa-fw fa-search"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
-                        <i class="fa fa-fw fa-search text-dark mr-2"></i>
-                    </a>
                     <a class="nav-icon text-decoration-none" href="cart.html">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                     </a>
@@ -105,40 +108,72 @@ https://templatemo.com/tm-559-zay-shop
     </nav>
     <!-- Close Header -->
 
-    <!-- Register Form -->
-    <section class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <h2 class="text-center mb-4">Sign Up</h2>
-                <form id="signupForm">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Full Name</label>
-                        <input type="text" class="form-control" id="name" name="Name" required>
+    <!-- Modal -->
+    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="w-100 pt-1 mb-5 text-right">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="get" class="modal-content modal-body border-0 p-0">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                    <button type="submit" class="input-group-text bg-success text-light">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <!-- Open Content -->
+    <section class="bg-light">
+        <div class="container pb-5">
+            <div class="row">
+                <div class="col-lg-5 mt-5">
+                    <div class="card mb-3">
+                        <img class="card-img img-fluid" src="../assets/img/shop_01.png" alt="Product Image" id="product-detail">
                     </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" name="Email" required>
+                </div>
+                <!-- col end -->
+                <div class="col-lg-7 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="h2" id="product-name">Loading...</h1>
+                            <p class="h3 py-2" id="product-price">$0.00</p>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h6>Brand:</h6>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p class="text-muted"><strong id="product-brand">Loading...</strong></p>
+                                </li>
+                            </ul>
+                            <h6>Description:</h6>
+                            <p id="product-description">Loading product description...</p>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h6>Category:</h6>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p class="text-muted"><strong id="product-category">Loading...</strong></p>
+                                </li>
+                            </ul>
+                            <div class="row pb-3">
+                                <div class="col d-grid">
+                                    <button class="btn btn-success btn-lg" onclick="productUI.addToCart(new URLSearchParams(window.location.search).get('id'))">Add To Cart</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="Password" required minlength="6">
-                        <div class="form-text">Password must be at least 6 characters long.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="confirmPassword" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" required>
-                    </div>
-                    <button type="submit" class="btn btn-success w-100">Sign Up</button>
-                </form>
-                <div class="text-center mt-3">
-                    <p>Already have an account? <a href="login.html" class="text-success">Login</a></p>
                 </div>
             </div>
         </div>
     </section>
-    <!-- End Register Form -->
+    <!-- Close Content -->
 
-    <!-- Footer -->
+    <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">
             <div class="row">
@@ -235,39 +270,6 @@ https://templatemo.com/tm-559-zay-shop
     <script src="../js/custom.js"></script>
     <script src="../js/api.js"></script>
     <script src="../js/navbar.js"></script>
-    <script>
-        document.getElementById('signupForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match');
-                return;
-            }
-            
-            try {
-                const success = await window.api.auth.register({
-                    Name: name,
-                    Email: email,
-                    Password: password
-                });
-                
-                if (success) {
-                    alert('Registration successful! Please login.');
-                    window.location.href = 'login.html';
-                } else {
-                    alert('Registration failed. Please try again.');
-                }
-            } catch (error) {
-                console.error('Registration error:', error);
-                alert('An error occurred during registration. Please try again.');
-            }
-        });
-    </script>
     <!-- End Script -->
 </body>
 

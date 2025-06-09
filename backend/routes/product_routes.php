@@ -1,56 +1,6 @@
 <?php
 
 return function($flight) {
-
-    /**
- * @OA\Post(
- *     path="/api/products",
- *     summary="Create a new product",
- *     tags={"Product"},
- *     security={{"bearerAuth":{}}},
- *     @OA\RequestBody(
- *         required=true,
- *         @OA\JsonContent(ref="#/components/schemas/ProductCreateRequest")
- *     ),
- *     @OA\Response(
- *         response=201,
- *         description="Product created successfully",
- *         @OA\JsonContent(ref="#/components/schemas/Product")
- *     ),
- *     @OA\Response(response=400, description="Invalid input"),
- *     @OA\Response(response=401, description="Unauthorized")
- * )
- */
-    $flight->route('POST /api/products', function() use ($flight) {
-        try {
-            $productService = $flight->get('productService');
-        if (!$productService) {
-            $flight->json(['error' => 'Product service not available'], 500);
-            return;
-        }
-
-        // Authenticate user (optional: limit to admins)
-        $user = $flight->get('user');
-        if (!$user) {
-            $flight->json(['error' => 'Unauthorized'], 401);
-            return;
-        }
-
-        $input = $flight->request()->data->getData();
-        if (empty($input)) {
-            $flight->json(['error' => 'Empty input'], 400);
-            return;
-        }
-
-        $created = $productService->create($input);
-        $flight->json($created, 201);
-    } catch (Exception $e) {
-        error_log("Create product error: " . $e->getMessage());
-        $flight->json(['error' => 'Failed to create product'], 500);
-    }
-});
-
-
     /**
      * @OA\Get(
      *     path="/api/products",
@@ -188,10 +138,90 @@ return function($flight) {
             }
 
             $products = $productService->searchProducts($query);
-            $flight->json($products);
+            $flight->json($products ?: []);
         } catch (Exception $e) {
             error_log("Search products error: " . $e->getMessage());
             $flight->json(['error' => 'Failed to search products'], 500);
+        }
+    });
+
+    /**
+     * @OA\Post(
+     *     path="/api/products",
+     *     summary="Create a new product",
+     *     tags={"Product"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/Product")
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Product created successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/Product")
+     *     )
+     * )
+     */
+    $flight->route('POST /api/products', function() use ($flight) {
+        try {
+            $productService = $flight->get('productService');
+            if (!$productService) {
+                $flight->json(['error' => 'Product service not available'], 500);
+                return;
+            }
+
+            // Get JSON data from request body
+            $json = file_get_contents('php://input');
+            $data = json_decode($json, true);
+
+            if (!$data) {
+                $flight->json(['error' => 'Invalid JSON data'], 400);
+                return;
+            }
+
+            $product = $productService->create($data);
+            $flight->json($product, 201);
+        } catch (Exception $e) {
+            error_log("Create product error: " . $e->getMessage());
+            $flight->json(['error' => 'Failed to create product: ' . $e->getMessage()], 500);
+        }
+    });
+
+    /**
+     * @OA\Delete(
+     *     path="/api/products/{id}",
+     *     summary="Delete a product",
+     *     tags={"Product"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Product ID",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Product deleted successfully"
+     *     ),
+     *     @OA\Response(response=404, description="Product not found")
+     * )
+     */
+    $flight->route('DELETE /api/products/@id', function($id) use ($flight) {
+        try {
+            $productService = $flight->get('productService');
+            if (!$productService) {
+                $flight->json(['error' => 'Product service not available'], 500);
+                return;
+            }
+
+            $result = $productService->delete($id);
+            if ($result) {
+                $flight->json(['message' => 'Product deleted successfully']);
+            } else {
+                $flight->json(['error' => 'Product not found'], 404);
+            }
+        } catch (Exception $e) {
+            error_log("Delete product error: " . $e->getMessage());
+            $flight->json(['error' => 'Failed to delete product'], 500);
         }
     });
 };

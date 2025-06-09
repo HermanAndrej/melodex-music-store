@@ -6,47 +6,52 @@ class ProductDao extends BaseDao {
         parent::__construct("products", "ProductID");
     }
 
+    public function getAll() {
+        $sql = "SELECT p.*, c.CategoryName 
+                FROM " . $this->table . " p 
+                LEFT JOIN categories c ON p.CategoryID = c.CategoryID";
+        return $this->executeQuery($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getById($id) {
+        $sql = "SELECT p.*, c.CategoryName 
+                FROM " . $this->table . " p 
+                LEFT JOIN categories c ON p.CategoryID = c.CategoryID 
+                WHERE p." . $this->primaryKey . " = :id";
+        return $this->executeQuery($sql, [':id' => $id])->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function getByName($name) {
-        $sql = "SELECT * FROM {$this->table} WHERE Name = :name";
-        return $this->executeQuery($sql, [':name' => $name])->fetch();
+        $sql = "SELECT p.*, c.CategoryName 
+                FROM " . $this->table . " p 
+                LEFT JOIN categories c ON p.CategoryID = c.CategoryID 
+                WHERE p.Name = :name";
+        return $this->executeQuery($sql, [':name' => $name])->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function create(array $product) {
-        $id = $this->insert($product);
-        return $this->getById($id);
+    public function getByCategory($categoryId) {
+        $sql = "SELECT p.*, c.CategoryName 
+                FROM " . $this->table . " p 
+                LEFT JOIN categories c ON p.CategoryID = c.CategoryID 
+                WHERE p.CategoryID = :categoryId";
+        return $this->executeQuery($sql, [':categoryId' => $categoryId])->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getByCategoryId($categoryId, $limit = null) {
-        $sql = "SELECT * FROM {$this->table} WHERE CategoryID = :categoryId";
-        if ($limit !== null) {
-            $sql .= " LIMIT " . (int)$limit;
-        }
-        return $this->executeQuery($sql, [':categoryId' => $categoryId])->fetchAll();
+    public function search($query) {
+        $sql = "SELECT p.*, c.CategoryName 
+                FROM " . $this->table . " p 
+                LEFT JOIN categories c ON p.CategoryID = c.CategoryID 
+                WHERE p.Name LIKE :query OR p.Description LIKE :query";
+        $result = $this->executeQuery($sql, [':query' => "%$query%"])->fetchAll(PDO::FETCH_ASSOC);
+        return $result ?: [];
     }
 
-    public function searchByName($searchTerm) {
-        $sql = "SELECT * FROM {$this->table} WHERE Name LIKE :term";
-        $term = "%$searchTerm%";
-        return $this->executeQuery($sql, [':term' => $term])->fetchAll();
-    }
-
-    public function updateStock($productId, $newStock) {
-        $sql = "UPDATE {$this->table} SET Stock = :stock WHERE ProductID = :productId";
-        $this->executeQuery($sql, [':stock' => $newStock, ':productId' => $productId]);
-        return true;
-    }
-
-    public function getProductRatings($productId) {
-        $sql = "SELECT * FROM ratings WHERE ProductID = :productId";
-        return $this->executeQuery($sql, [':productId' => $productId])->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function getTopRated($limit = 10) {
-        $sql = "SELECT * FROM products ORDER BY Rating DESC LIMIT :limit";
-        $stmt = $this->connection->prepare($sql);
-        $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    public function getByProductId($productId) {
+        $sql = "SELECT p.*, c.CategoryName 
+                FROM " . $this->table . " p 
+                LEFT JOIN categories c ON p.CategoryID = c.CategoryID 
+                WHERE p.ProductID = :productId";
+        return $this->executeQuery($sql, [':productId' => $productId])->fetch();
     }
 }
 ?>

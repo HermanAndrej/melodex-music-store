@@ -2,12 +2,7 @@ openapi: 3.0.0
 info:
   title: Melodex Online Store API
   version: 1.0.0
-  description: API for managing products, categories, orders, and user ratings in the Melodex music instrument online store.
-  contact:
-    name: Melodex API Support
-    email: support@melodex.com
-  license:
-    name: MIT
+  description: API for managing products, categories, orders, and user ratings
 
 servers:
   - url: /api
@@ -19,93 +14,27 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: JWT token authentication. Use the /users/login endpoint to obtain a token.
-
-  responses:
-    UnauthorizedError:
-      description: Access token is missing or invalid
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-                example: false
-              message:
-                type: string
-                example: "Invalid or missing authentication token"
-
-    BadRequestError:
-      description: Invalid request payload
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: boolean
-                example: false
-              message:
-                type: string
-                example: "Invalid request format"
-              errors:
-                type: object
-                example: {
-                  "email": "Invalid email format"
-                }
 
   schemas:
     User:
       type: object
-      required:
-        - UserID
-        - Email
-        - Name
       properties:
         UserID:
           type: integer
-          description: Unique identifier for the user
         Name:
           type: string
-          description: User's full name
         Email:
           type: string
-          format: email
-          description: User's email address (used for login)
-        Role:
-          type: string
-          enum: [user, admin]
-          default: user
-          description: User's role in the system
         DateOfBirth:
           type: string
           format: date
-          description: User's date of birth
         Address:
           type: string
-          description: User's shipping address
         Phone:
           type: string
-          description: User's contact phone number
         DateOfJoin:
           type: string
           format: date
-          description: Date when user registered
-        LastLogin:
-          type: string
-          format: date-time
-          description: Last login timestamp
-      example:
-        UserID: 1
-        Name: "John Doe"
-        Email: "john.doe@example.com"
-        Role: "user"
-        DateOfBirth: "1990-01-15"
-        Address: "123 Main St, Anytown, ST 12345"
-        Phone: "+1234567890"
-        DateOfJoin: "2023-01-01"
-        LastLogin: "2023-06-15T14:30:00Z"
 
     Product:
       type: object
@@ -169,30 +98,20 @@ components:
 paths:
   /users/register:
     post:
-      tags:
-        - Users
       summary: Register a new user
-      description: Create a new user account
-      operationId: registerUser
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              required:
-                - Name
-                - Email
-                - Password
               properties:
                 Name:
                   type: string
                 Email:
                   type: string
-                  format: email
                 Password:
                   type: string
-                  format: password
                 DateOfBirth:
                   type: string
                   format: date
@@ -206,40 +125,22 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: "User registered successfully"
-                  user:
-                    $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/User'
 
   /users/login:
     post:
-      tags:
-        - Users
       summary: Login user
-      description: Obtain a JWT token for authentication
-      operationId: loginUser
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
-              required:
-                - email
-                - password
               properties:
                 email:
                   type: string
-                  format: email
                 password:
                   type: string
-                  format: password
       responses:
         '200':
           description: Login successful
@@ -248,169 +149,30 @@ paths:
               schema:
                 type: object
                 properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: "Login successful"
                   token:
                     type: string
-                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
                   user:
                     $ref: '#/components/schemas/User'
 
   /products:
     get:
-      tags:
-        - Products
       summary: Get all products
-      description: Retrieve a list of all available products with optional pagination
-      operationId: getAllProducts
-      parameters:
-        - name: page
-          in: query
-          description: Page number for pagination
-          required: false
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-        - name: limit
-          in: query
-          description: Number of items per page
-          required: false
-          schema:
-            type: integer
-            default: 20
-            minimum: 1
-            maximum: 100
-        - name: sort
-          in: query
-          description: Sort field
-          required: false
-          schema:
-            type: string
-            enum: [name, price, rating]
-            default: name
-        - name: order
-          in: query
-          description: Sort order
-          required: false
-          schema:
-            type: string
-            enum: [asc, desc]
-            default: asc
       responses:
         '200':
           description: List of products
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Product'
-                  pagination:
-                    type: object
-                    properties:
-                      currentPage:
-                        type: integer
-                        example: 1
-                      totalPages:
-                        type: integer
-                        example: 5
-                      totalItems:
-                        type: integer
-                        example: 100
-                      limit:
-                        type: integer
-                        example: 20
-
-    post:
-      tags:
-        - Products
-      summary: Create a new product
-      description: Add a new product to the database (admin only)
-      operationId: createProduct
-      security:
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - Name
-                - Price
-                - CategoryID
-              properties:
-                Name:
-                  type: string
-                Price:
-                  type: number
-                  format: float
-                Brand:
-                  type: string
-                Description:
-                  type: string
-                Stock:
-                  type: integer
-                CategoryID:
-                  type: integer
-                ImageURL:
-                  type: string
-      responses:
-        '201':
-          description: Product created successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: "Product created successfully"
-                  product:
-                    $ref: '#/components/schemas/Product'
-        '400':
-          $ref: '#/components/responses/BadRequestError'
-        '401':
-          $ref: '#/components/responses/UnauthorizedError'
-        '403':
-          description: Forbidden - admin access required
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: "Admin access required"
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
 
   /products/{id}:
     get:
-      tags:
-        - Products
       summary: Get product by ID
-      description: Retrieve detailed information about a specific product
-      operationId: getProductById
       parameters:
         - name: id
           in: path
-          description: ID of the product to retrieve
           required: true
           schema:
             type: integer
@@ -420,176 +182,11 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  data:
-                    $ref: '#/components/schemas/Product'
-        '404':
-          description: Product not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: "Product not found"
-
-    put:
-      tags:
-        - Products
-      summary: Update a product
-      description: Update an existing product (admin only)
-      operationId: updateProduct
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          description: ID of the product to update
-          required: true
-          schema:
-            type: integer
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                Name:
-                  type: string
-                Price:
-                  type: number
-                  format: float
-                Brand:
-                  type: string
-                Description:
-                  type: string
-                Stock:
-                  type: integer
-                CategoryID:
-                  type: integer
-                ImageURL:
-                  type: string
-      responses:
-        '200':
-          description: Product updated successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: "Product updated successfully"
-                  product:
-                    $ref: '#/components/schemas/Product'
-        '400':
-          $ref: '#/components/responses/BadRequestError'
-        '401':
-          $ref: '#/components/responses/UnauthorizedError'
-        '403':
-          description: Forbidden - admin access required
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: "Admin access required"
-        '404':
-          description: Product not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: "Product not found"
-
-    delete:
-      tags:
-        - Products
-      summary: Delete a product
-      description: Delete an existing product (admin only)
-      operationId: deleteProduct
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: id
-          in: path
-          description: ID of the product to delete
-          required: true
-          schema:
-            type: integer
-      responses:
-        '200':
-          description: Product deleted successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: "Product deleted successfully"
-        '401':
-          $ref: '#/components/responses/UnauthorizedError'
-        '403':
-          description: Forbidden - admin access required
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: "Admin access required"
-        '404':
-          description: Product not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: "Product not found"
+                $ref: '#/components/schemas/Product'
 
   /products/category/{id}:
     get:
-      tags:
-        - Products
       summary: Get products by category
-      description: Retrieve a list of products in a specific category
-      operationId: getProductsByCategory
       parameters:
         - name: id
           in: path

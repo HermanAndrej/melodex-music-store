@@ -1,165 +1,136 @@
 <?php
+require_once __DIR__ . '/../services/UserService.php';
+require_once __DIR__ . '/../dao/UserDao.php';
 
+/**
+ * @OA\Tag(
+ *     name="Users",
+ *     description="User management endpoints"
+ * )
+ */
 return function($flight) {
-    /**
-     * @OA\Tag(
-     *     name="users",
-     *     description="User profile management"
-     * )
-     */
+    $userService = new UserService(new UserDao());
 
     /**
      * @OA\Get(
-     *     path="/api/users/{id}",
-     *     tags={"users"},
-     *     summary="Get user profile by ID",
+     *     path="/api/users/profile",
+     *     tags={"Users"},
+     *     summary="Get user profile",
      *     security={{"bearerAuth":{}}},
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         description="User ID",
-     *         @OA\Schema(type="integer")
-     *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="User profile",
-     *         @OA\JsonContent(ref="#/components/schemas/User")
-     *     ),
-     *     @OA\Response(response=404, description="User not found"),
-     *     @OA\Response(response=401, description="Unauthorized")
+     *         description="User profile retrieved successfully"
+     *     )
      * )
      */
-    $flight->route('GET /api/users/@id', function($id) use ($flight) {
+    $flight->route('GET /api/users/profile', function() use ($userService, $flight) {
         try {
-            $userService = $flight->get('userService');
-            if (!$userService) {
-                $flight->json(['error' => 'User service not available'], 500);
-                return;
-            }
-
             $user = $flight->get('user');
             if (!$user) {
-                $flight->json(['error' => 'User not authenticated'], 401);
+                $flight->json(['success' => false, 'message' => 'User not authenticated'], 401);
                 return;
             }
 
-            $result = $userService->getById($id);
-            if ($result) {
-                $flight->json($result);
-            } else {
-                $flight->json(['error' => 'User not found'], 404);
+            $userId = $user->id ?? $user['id'] ?? $user->UserID ?? $user['UserID'] ?? null;
+            if (!$userId) {
+                $flight->json(['success' => false, 'message' => 'User ID not found'], 401);
+                return;
             }
+
+            $result = $userService->getProfile($userId);
+            $flight->json($result);
         } catch (Exception $e) {
-            error_log("Get user error: " . $e->getMessage());
-            $flight->json(['error' => 'Failed to fetch user'], 500);
+            error_log("Get profile error: " . $e->getMessage());
+            $flight->json(['success' => false, 'message' => 'Failed to get profile: ' . $e->getMessage()], 500);
         }
     });
 
     /**
      * @OA\Put(
-     *     path="/api/users/{id}",
-     *     tags={"users"},
-     *     summary="Update user profile by ID",
+     *     path="/api/users/profile",
+     *     tags={"Users"},
+     *     summary="Update user profile",
      *     security={{"bearerAuth":{}}},
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         description="User ID",
-     *         @OA\Schema(type="integer")
-     *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         description="User data to update",
-     *         @OA\JsonContent(ref="#/components/schemas/UserUpdateRequest")
+     *         @OA\JsonContent(
+     *             @OA\Property(property="Name", type="string"),
+     *             @OA\Property(property="Phone", type="string"),
+     *             @OA\Property(property="Address", type="string"),
+     *             @OA\Property(property="City", type="string"),
+     *             @OA\Property(property="Country", type="string")
+     *         )
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Updated user profile",
-     *         @OA\JsonContent(ref="#/components/schemas/User")
-     *     ),
-     *     @OA\Response(response=404, description="User not found"),
-     *     @OA\Response(response=401, description="Unauthorized")
+     *         description="Profile updated successfully"
+     *     )
      * )
      */
-    $flight->route('PUT /api/users/@id', function($id) use ($flight) {
+    $flight->route('PUT /api/users/profile', function() use ($userService, $flight) {
         try {
-            $userService = $flight->get('userService');
-            if (!$userService) {
-                $flight->json(['error' => 'User service not available'], 500);
-                return;
-            }
-
             $user = $flight->get('user');
             if (!$user) {
-                $flight->json(['error' => 'User not authenticated'], 401);
+                $flight->json(['success' => false, 'message' => 'User not authenticated'], 401);
                 return;
             }
 
+            // Get JSON input data
             $input = json_decode(file_get_contents('php://input'), true);
             if (json_last_error() !== JSON_ERROR_NONE) {
-                $flight->json(['error' => 'Invalid JSON input'], 400);
+                $flight->json(['success' => false, 'message' => 'Invalid JSON input'], 400);
                 return;
             }
 
-            $updated = $userService->update($id, $input);
-            if ($updated) {
-                $flight->json($updated);
-            } else {
-                $flight->json(['error' => 'User not found'], 404);
+            // Add user ID to the data
+            $input['UserID'] = $user->id ?? $user['id'] ?? $user->UserID ?? $user['UserID'] ?? null;
+            
+            if (!$input['UserID']) {
+                $flight->json(['success' => false, 'message' => 'User ID not found'], 401);
+                return;
             }
+
+            $result = $userService->updateProfile($input);
+            $flight->json($result);
         } catch (Exception $e) {
-            error_log("Update user error: " . $e->getMessage());
-            $flight->json(['error' => 'Failed to update user'], 500);
+            error_log("Update profile error: " . $e->getMessage());
+            $flight->json(['success' => false, 'message' => 'Failed to update profile: ' . $e->getMessage()], 500);
         }
     });
 
     /**
-     * @OA\Delete(
-     *     path="/api/users/{id}",
-     *     tags={"users"},
-     *     summary="Delete user account by ID",
+     * @OA\Get(
+     *     path="/api/users/all",
+     *     tags={"Users"},
+     *     summary="Get all users (admin only)",
      *     security={{"bearerAuth":{}}},
-     *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         required=true,
-     *         description="User ID",
-     *         @OA\Schema(type="integer")
-     *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="User deleted successfully",
-     *         @OA\JsonContent(@OA\Property(property="success", type="boolean"))
-     *     ),
-     *     @OA\Response(response=404, description="User not found"),
-     *     @OA\Response(response=401, description="Unauthorized")
+     *         description="List of all users"
+     *     )
      * )
      */
-    $flight->route('DELETE /api/users/@id', function($id) use ($flight) {
+    $flight->route('GET /api/users/all', function() use ($userService, $flight) {
         try {
-            $userService = $flight->get('userService');
-            if (!$userService) {
-                $flight->json(['error' => 'User service not available'], 500);
-                return;
-            }
-
             $user = $flight->get('user');
             if (!$user) {
-                $flight->json(['error' => 'User not authenticated'], 401);
+                $flight->json(['success' => false, 'message' => 'User not authenticated'], 401);
                 return;
             }
 
-            $result = $userService->delete($id);
-            if ($result) {
-                $flight->json(['success' => true]);
-            } else {
-                $flight->json(['error' => 'User not found'], 404);
+            // Check if user is admin
+            $isAdmin = isset($user->Role) ? $user->Role === 'admin' : 
+                      (isset($user['Role']) ? $user['Role'] === 'admin' : false);
+            if (!$isAdmin) {
+                $flight->json(['success' => false, 'message' => 'Admin access required'], 403);
+                return;
             }
+
+            $result = $userService->getAllUsers();
+            $flight->json($result);
         } catch (Exception $e) {
-            error_log("Delete user error: " . $e->getMessage());
-            $flight->json(['error' => 'Failed to delete user'], 500);
+            error_log("Get all users error: " . $e->getMessage());
+            $flight->json(['success' => false, 'message' => 'Failed to get users: ' . $e->getMessage()], 500);
         }
     });
 };

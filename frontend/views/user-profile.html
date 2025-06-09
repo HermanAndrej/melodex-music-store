@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-    <title>Melodex - Shopping Cart</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Profile - Melodex</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="apple-touch-icon" href="../assets/img/apple-icon.png">
     <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico">
@@ -16,6 +16,7 @@
     <!-- Load fonts style after rendering the layout styles -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="../css/fontawesome.min.css">
+    <script src="../js/nav.js"></script>
 <!--
     
 TemplateMo 559 Zay Shop
@@ -67,35 +68,25 @@ https://templatemo.com/tm-559-zay-shop
                             <a class="nav-link" href="index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="shop.html">Shop</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="shop.html">Shop</a>
+                            <a class="nav-link" href="about.html">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">Contact</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="adminLink" href="admin.html" style="display: none;">Admin Panel</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="navbar align-self-center d-flex">
-                    <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
-                            <div class="input-group-text">
-                                <i class="fa fa-fw fa-search"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
-                        <i class="fa fa-fw fa-search text-dark mr-2"></i>
-                    </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="cart.html">
+                    <a class="nav-icon text-decoration-none" href="cart.html">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="user-profile.html">
+                    <a class="nav-icon text-decoration-none" href="user-profile.html">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
                     </a>
                 </div>
             </div>
@@ -106,52 +97,100 @@ https://templatemo.com/tm-559-zay-shop
 
     <!-- User Profile -->
     <section class="container py-5">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="text-center">
-                            <img src="../assets/img/user.jpg" class="rounded-circle" alt="User Profile Picture" width="150">
-                            <h5 class="mt-3">Andrej Herman</h5>
-                            <p class="text-muted">email@example.com</p>
-                        </div>
-                        <hr>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-muted">Date of Birth:</p>
-                            <p>March 7, 2003</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-muted">Address:</p>
-                            <p>123 Main Street, City, Country</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-muted">Phone:</p>
-                            <p>123-456-7890</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p class="text-muted">Joined:</p>
-                            <p>January 1, 2023</p>
+        <!-- Guest User View -->
+        <div id="guest-view" style="display: none;">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h3 class="card-title">Welcome to Melodex</h3>
+                            <p class="card-text">Please login or register to access your profile and order history.</p>
+                            <div class="mt-4">
+                                <a href="login.html" class="btn btn-success me-2">Login</a>
+                                <a href="signup.html" class="btn btn-outline-success">Register</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Order History</h5>
-                        <hr>
-                        <div class="row">
-                            <div class="col-lg-6 mb-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h6 class="card-title">Order ID: #123456</h6>
-                                        <p class="card-text">Date: January 5, 2024</p>
-                                        <p class="card-text">Total: $100.00</p>
-                                        <a href="#" class="btn btn-outline-primary btn-sm">View Details</a>
+        </div>
+
+        <!-- Authenticated User View -->
+        <div id="user-view" style="display: none;">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mb-4">Profile Information</h5>
+                            <form id="profile-form" onsubmit="updateProfile(event)">
+                                <div class="mb-3">
+                                    <label class="form-label">Full Name</label>
+                                    <div class="d-flex align-items-center">
+                                        <span id="display-name" class="me-3"></span>
+                                        <input type="text" class="form-control d-none" id="full-name" name="name">
+                                        <button type="button" class="btn btn-link btn-sm" onclick="toggleEdit('name')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
                                     </div>
                                 </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Email</label>
+                                    <div class="d-flex align-items-center">
+                                        <span id="display-email" class="me-3"></span>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Date of Birth</label>
+                                    <div class="d-flex align-items-center">
+                                        <span id="display-dob" class="me-3">Not set</span>
+                                        <input type="date" class="form-control d-none" id="dob" name="dob">
+                                        <button type="button" class="btn btn-link btn-sm" onclick="toggleEdit('dob')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Phone</label>
+                                    <div class="d-flex align-items-center">
+                                        <span id="display-phone" class="me-3"></span>
+                                        <input type="tel" class="form-control d-none" id="phone" name="phone">
+                                        <button type="button" class="btn btn-link btn-sm" onclick="toggleEdit('phone')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Address</label>
+                                    <div class="d-flex align-items-center">
+                                        <span id="display-address" class="me-3"></span>
+                                        <input type="text" class="form-control d-none" id="address" name="address">
+                                        <button type="button" class="btn btn-link btn-sm" onclick="toggleEdit('address')">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="d-none" id="save-buttons">
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    <button type="button" class="btn btn-secondary" onclick="cancelEdit()">Cancel</button>
+                                </div>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-danger" onclick="window.api.auth.logout()">
+                                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                </button>
                             </div>
-                            <!-- More orders can be added similarly -->
+                        </div>
+                    </div>
+
+                    <!-- Order History Section -->
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Order History</h5>
+                            <hr>
+                            <div id="order-history">
+                                <!-- Orders will be loaded here -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -164,38 +203,35 @@ https://templatemo.com/tm-559-zay-shop
     <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">
             <div class="row">
-
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-success border-bottom pb-3 border-light logo">Melodex</h2>
                     <ul class="list-unstyled text-light footer-link-list">
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw"></i>
-                            123 Consectetur at ligula 10660
+                            123 Music Street, Melody City, MC 12345
                         </li>
                         <li>
                             <i class="fa fa-phone fa-fw"></i>
-                            <a class="text-decoration-none" href="tel:010-020-0340">010-020-0340</a>
+                            <a class="text-decoration-none" href="tel:+15551234567">+1 (555) 123-4567</a>
                         </li>
                         <li>
                             <i class="fa fa-envelope fa-fw"></i>
-                            <a class="text-decoration-none" href="mailto:info@company.com">info@company.com</a>
+                            <a class="text-decoration-none" href="mailto:info@melodex.com">info@melodex.com</a>
                         </li>
                     </ul>
                 </div>
-
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Electric Guitars</a></li>
-                        <li><a class="text-decoration-none" href="#">Keyboards</a></li>
-                        <li><a class="text-decoration-none" href="#">Drum Sets</a></li>
-                        <li><a class="text-decoration-none" href="#">Amplifiers</a></li>
-                        <li><a class="text-decoration-none" href="#">Guitar Pedals</a></li>
-                        <li><a class="text-decoration-none" href="#">Microphones</a></li>
-                        <li><a class="text-decoration-none" href="#">Vinyls</a></li>
+                        <li><a class="text-decoration-none" href="shop.html">Electric Guitars</a></li>
+                        <li><a class="text-decoration-none" href="shop.html">Keyboards</a></li>
+                        <li><a class="text-decoration-none" href="shop.html">Drum Sets</a></li>
+                        <li><a class="text-decoration-none" href="shop.html">Amplifiers</a></li>
+                        <li><a class="text-decoration-none" href="shop.html">Guitar Pedals</a></li>
+                        <li><a class="text-decoration-none" href="shop.html">Microphones</a></li>
+                        <li><a class="text-decoration-none" href="shop.html">Vinyls</a></li>
                     </ul>
                 </div>
-
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
                     <ul class="list-unstyled text-light footer-link-list">
@@ -206,9 +242,7 @@ https://templatemo.com/tm-559-zay-shop
                         <li><a class="text-decoration-none" href="login.html">Login</a></li>
                     </ul>
                 </div>
-
             </div>
-
             <div class="row text-light mb-4">
                 <div class="col-12 mb-3">
                     <div class="w-100 my-3 border-top border-light"></div>
@@ -216,16 +250,16 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="col-auto me-auto">
                     <ul class="list-inline text-left footer-icons">
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href="https://facebook.com/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href="https://instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
                             <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i class="fab fa-twitter fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href="https://linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -238,22 +272,188 @@ https://templatemo.com/tm-559-zay-shop
                 </div>
             </div>
         </div>
-
         <div class="w-100 bg-black py-3">
             <div class="container">
                 <div class="row pt-2">
                     <div class="col-12">
                         <p class="text-left text-light">
-                            Copyright &copy; 2024 Melodex 
+                            Copyright &copy; 2025 Melodex 
                             | Designed by <a rel="sponsored" href="https://github.com/HermanAndrej" target="_blank">Andrej Herman</a>
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-
     </footer>
     <!-- End Footer -->
+
+    <!-- Start Script -->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/templatemo.js"></script>
+    <script src="../js/slick.min.js"></script>
+    <script src="../js/custom.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script>
+        // Function to format date
+        function formatDate(dateString) {
+            if (!dateString) return 'N/A';
+            try {
+                const date = new Date(dateString);
+                if (isNaN(date.getTime())) return 'N/A';
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                return date.toLocaleDateString(undefined, options);
+            } catch (error) {
+                console.error('Error formatting date:', error);
+                return 'N/A';
+            }
+        }
+
+        // Function to toggle edit mode
+        function toggleEdit(field) {
+            const displayElement = document.getElementById(`display-${field}`);
+            const inputElement = document.getElementById(field);
+            const saveButtons = document.getElementById('save-buttons');
+            
+            // Hide all display elements and show all input elements
+            document.querySelectorAll('[id^="display-"]').forEach(el => el.classList.add('d-none'));
+            document.querySelectorAll('input.form-control').forEach(el => el.classList.remove('d-none'));
+            saveButtons.classList.remove('d-none');
+            
+            // Focus on the selected input
+            inputElement.focus();
+        }
+        
+        function cancelEdit() {
+            // Show all display elements and hide all input elements
+            document.querySelectorAll('[id^="display-"]').forEach(el => el.classList.remove('d-none'));
+            document.querySelectorAll('input.form-control').forEach(el => el.classList.add('d-none'));
+            document.getElementById('save-buttons').classList.add('d-none');
+            
+            // Reload the data to reset any changes
+            loadUserData();
+        }
+
+        // Function to load user data
+        async function loadUserData() {
+            try {
+                const profileData = await window.api.auth.getProfile();
+                if (profileData) {
+                    // Update display fields
+                    document.getElementById('display-name').textContent = profileData.Name || 'N/A';
+                    document.getElementById('display-email').textContent = profileData.Email || 'N/A';
+                    document.getElementById('display-dob').textContent = profileData.DateOfBirth ? formatDate(profileData.DateOfBirth) : 'Not set';
+                    document.getElementById('display-phone').textContent = profileData.Phone || 'N/A';
+                    document.getElementById('display-address').textContent = profileData.Address || 'N/A';
+                    
+                    // Update form fields
+                    document.getElementById('full-name').value = profileData.Name || '';
+                    document.getElementById('dob').value = profileData.DateOfBirth ? profileData.DateOfBirth.split('T')[0] : '';
+                    document.getElementById('phone').value = profileData.Phone || '';
+                    document.getElementById('address').value = profileData.Address || '';
+                    
+                    // Update local storage
+                    const currentUser = window.api.auth.getCurrentUser();
+                    const updatedUser = { ...currentUser, ...profileData };
+                    localStorage.setItem('user', JSON.stringify(updatedUser));
+                } else {
+                    const user = window.api.auth.getCurrentUser();
+                    if (user) {
+                        document.getElementById('display-name').textContent = user.Name || 'N/A';
+                        document.getElementById('display-email').textContent = user.Email || 'N/A';
+                        document.getElementById('display-dob').textContent = user.DateOfBirth ? formatDate(user.DateOfBirth) : 'Not set';
+                        document.getElementById('display-phone').textContent = user.Phone || 'N/A';
+                        document.getElementById('display-address').textContent = user.Address || 'N/A';
+                        
+                        document.getElementById('full-name').value = user.Name || '';
+                        document.getElementById('dob').value = user.DateOfBirth ? user.DateOfBirth.split('T')[0] : '';
+                        document.getElementById('phone').value = user.Phone || '';
+                        document.getElementById('address').value = user.Address || '';
+                    }
+                }
+                
+                // Load orders
+                const orders = await window.api.orders.getUserOrders();
+                const orderHistory = document.getElementById('order-history');
+                if (!Array.isArray(orders) || orders.length === 0) {
+                    orderHistory.innerHTML = '<p class="text-center text-muted">No orders found.</p>';
+                } else {
+                    orderHistory.innerHTML = orders.map(order => createOrderCard(order)).join('');
+                }
+            } catch (error) {
+                console.error('Error loading user data:', error);
+                alert('Error loading profile data. Please try refreshing the page.');
+            }
+        }
+
+        // Function to handle profile update
+        async function updateProfile(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const currentUser = window.api.auth.getCurrentUser();
+            const userData = {
+                UserID: currentUser.UserID,
+                Name: formData.get('name'),
+                DateOfBirth: formData.get('dob'),
+                Phone: formData.get('phone'),
+                Address: formData.get('address')
+            };
+            
+            try {
+                const success = await window.api.auth.updateProfile(userData);
+                if (success) {
+                    alert('Profile updated successfully!');
+                    cancelEdit(); // This will reload the data and hide the edit form
+                } else {
+                    alert('Failed to update profile. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                alert('Error updating profile. Please try again.');
+            }
+        }
+
+        // Function to create order card
+        function createOrderCard(order) {
+            return `
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h6 class="card-subtitle text-muted">Order #${order.OrderID}</h6>
+                        </div>
+                        <p class="card-text">
+                            <strong>Date:</strong> ${formatDate(order.OrderDate)}<br>
+                            <strong>Total:</strong> $${order.TotalAmount.toFixed(2)}
+                        </p>
+                        <div class="order-items">
+                            ${order.Items ? order.Items.map(item => `
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span>${item.ProductName} x ${item.Quantity}</span>
+                                    <span>$${item.Price.toFixed(2)}</span>
+                                </div>
+                            `).join('') : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            const isAuthenticated = window.api.auth.isAuthenticated();
+            document.getElementById('guest-view').style.display = isAuthenticated ? 'none' : 'block';
+            document.getElementById('user-view').style.display = isAuthenticated ? 'block' : 'none';
+            
+            if (isAuthenticated) {
+                loadUserData();
+                // Add form submit handler
+                document.getElementById('profile-form').addEventListener('submit', updateProfile);
+            }
+        });
+    </script>
+    <!-- End Script -->
 </body>
 
 </html>

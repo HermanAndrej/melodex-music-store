@@ -1,6 +1,8 @@
 <?php
 
 return function($flight) {
+    error_log("Loading route modules...");
+
     // Define all route module filenames
     $routeFiles = [
         'user_routes.php',
@@ -15,6 +17,7 @@ return function($flight) {
     // Load each route module
     foreach ($routeFiles as $routeFile) {
         $filePath = __DIR__ . '/' . $routeFile;
+        error_log("Loading route file: $filePath");
 
         if (!file_exists($filePath)) {
             error_log("⚠️ Route file not found: $filePath");
@@ -23,9 +26,11 @@ return function($flight) {
 
         try {
             $routeFunction = require $filePath;
+            error_log("Successfully loaded route file: $routeFile");
 
             if (is_callable($routeFunction)) {
                 $routeFunction($flight);
+                error_log("Successfully registered routes from: $routeFile");
             } else {
                 error_log("⚠️ Route file $routeFile does not return a callable function");
             }
@@ -33,4 +38,6 @@ return function($flight) {
             error_log("❌ Error loading route file $routeFile: " . $e->getMessage());
         }
     }
+
+    error_log("Finished loading route modules");
 };

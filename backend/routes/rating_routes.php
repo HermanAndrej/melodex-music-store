@@ -35,10 +35,15 @@ return function($flight) {
                 return;
             }
 
-            $input['user_id'] = $user->id ?? $user['id'] ?? $user->UserID ?? $user['UserID'] ?? null;
+            $input['UserID'] = $user->id ?? $user['id'] ?? $user->UserID ?? $user['UserID'] ?? null;
 
-            $rating = $ratingService->create($input);
-            $flight->json($rating);
+            try {
+                $rating = $ratingService->create($input);
+                $flight->json(['success' => true, 'data' => $rating]);
+            } catch (Exception $e) {
+                error_log("Create rating error: " . $e->getMessage());
+                $flight->json(['error' => $e->getMessage()], 400);
+            }
         } catch (Exception $e) {
             error_log("Create rating error: " . $e->getMessage());
             $flight->json(['error' => 'Failed to create rating'], 500);
@@ -47,7 +52,7 @@ return function($flight) {
 
     /**
      * @OA\Get(
-     *     path="/api/products/{id}/ratings",
+     *     path="/api/ratings/product/{id}",
      *     summary="Get ratings for a product",
      *     tags={"Rating"},
      *     @OA\Parameter(
@@ -60,7 +65,7 @@ return function($flight) {
      *     @OA\Response(response=200, description="List of ratings", @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/Rating")))
      * )
      */
-    $flight->route('GET /api/products/@id/ratings', function($id) use ($flight) {
+    $flight->route('GET /api/ratings/product/@id', function($id) use ($flight) {
         try {
             $ratingService = $flight->get('ratingService');
             if (!$ratingService) {
@@ -68,10 +73,41 @@ return function($flight) {
                 return;
             }
 
-            $ratings = $ratingService->getProductRatings($id);
-            $flight->json($ratings);
+            $ratings = $ratingService->getByProductId($id);
+            $flight->json($ratings ?: []);
         } catch (Exception $e) {
             error_log("Get product ratings error: " . $e->getMessage());
+            $flight->json(['error' => 'Failed to fetch ratings'], 500);
+        }
+    });
+
+    /**
+     * @OA\Get(
+     *     path="/api/ratings/user/{id}",
+     *     summary="Get ratings by a user",
+     *     tags={"Rating"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="User ID",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(response=200, description="List of ratings", @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/Rating")))
+     * )
+     */
+    $flight->route('GET /api/ratings/user/@id', function($id) use ($flight) {
+        try {
+            $ratingService = $flight->get('ratingService');
+            if (!$ratingService) {
+                $flight->json(['error' => 'Rating service not available'], 500);
+                return;
+            }
+
+            $ratings = $ratingService->getByUserId($id);
+            $flight->json($ratings ?: []);
+        } catch (Exception $e) {
+            error_log("Get user ratings error: " . $e->getMessage());
             $flight->json(['error' => 'Failed to fetch ratings'], 500);
         }
     });
